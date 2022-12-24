@@ -1,0 +1,26 @@
+pragma solidity ^0.6.0;
+
+contract AccountingBook {
+  string public businessName;
+  uint public taxYear;
+  Transaction[] public transactions_number; //to view the specific transactions_done_number details ex. type: 18 (view 18th transaction details)
+
+  constructor(address owner, string memory _businessName, uint _taxYear) public {
+    owner = msg.sender;
+    businessName = _businessName;
+    taxYear = _taxYear;
+  }
+
+  struct Transaction {
+    string month;
+    uint date;
+    string description;
+    uint amount;
+  }
+
+  function addTransaction(string memory _month, uint _date, string memory _description, uint _amount) public {
+    Transaction memory newTransaction = Transaction(_month, _date, _description, _amount);
+    transactions_number.push(newTransaction);
+  }
+  
+}
