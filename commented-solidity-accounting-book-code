@@ -1,0 +1,43 @@
+pragma solidity ^0.6.0;
+
+// This line indicates that the code is written in Solidity version 0.6.0 or higher.
+
+contract AccountingBook {
+  // The AccountingBook contract defines a smart contract for an accounting book for a business.
+
+  string public businessName;
+  // The businessName variable stores the name of the business. It is a public variable, which means that it can be accessed and viewed by anyone.
+
+  uint public taxYear;
+  // The taxYear variable stores the tax year for which the accounting book is being maintained. It is also a public variable.
+
+  Transaction[] public transactions_number;
+  // The transactions_number variable is an array of Transaction structs. It is a public variable, which means that anyone can view the list of transactions.
+
+  constructor(address owner, string memory _businessName, uint _taxYear) public {
+    // The constructor is a special function that is called when the contract is deployed. It takes three arguments: the owner's address, the business name, and the tax year.
+    // The public keyword indicates that the constructor can be called from outside the contract.
+
+    owner = msg.sender;
+    // The owner variable is set to the address of the message sender (i.e. the contract owner). This
+
+  struct Transaction {
+    string month;
+    uint date;
+    string description;
+    uint amount;
+  }
+  // The Transaction struct defines a data structure for storing information about a transaction. It includes four fields: month, date, description, and amount.
+
+  function addTransaction(string memory _month, uint _date, string memory _description, uint _amount) public {
+    // The addTransaction function allows users to add new transactions to the accounting book.
+    // It takes four arguments: the month, date, description, and amount of the transaction.
+    // The public keyword indicates that the function can be called from outside the contract.
+
+    Transaction memory newTransaction = Transaction(_month, _date, _description, _amount);
+    // A new Transaction struct is created and initialized with the input data.
+
+    transactions_number.push(newTransaction);
+    // The newTransaction struct is added to the end of the transactions_number array.
+  }
+}
